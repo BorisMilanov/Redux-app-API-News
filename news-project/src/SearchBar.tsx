@@ -21,13 +21,15 @@ const SearchBar: React.FC = () => {
       {error && <p>Error fetching articles.</p>}
       {data && (
         <ul>
-          {data.articles.map((article) => (
-            <li key={article.url}>
-              <a href={article.url} target="_blank" rel="noopener noreferrer">
-                {article.title}
-              </a>
-            </li>
-          ))}
+          {data.articles
+            .filter((article) => article.title !== "[Removed]")
+            .map((article) => (
+              <li key={article.url}>
+                <a href={article.url} target="_blank" rel="noopener noreferrer">
+                  {article.title}
+                </a>
+              </li>
+            ))}
         </ul>
       )}
     </div>
